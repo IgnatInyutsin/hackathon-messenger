@@ -8,7 +8,7 @@
 с помощью команды cd
 - Перейдите в директорию
 ```
-cd docker/weather-app_instances/
+cd docker/hackathon-messenger_instances/
 ```
 - Создайте файл .env
 ```
@@ -31,25 +31,25 @@ chmod +x start
 ```
 ## Управлениe приложением
 ### Запуск приложения
-В папке docker/weather-app_instances/ запустите
+В папке docker/hackathon-messenger_instances/ запустите
 ```
 ./start
 ```
 
 ### Остановка приложения
-В папке docker/weather-app_instances/ запустите
+В папке docker/hackathon-messenger_instances/ запустите
 ```
 ./stop
 ```
 
 ### Просмотреть логи бэкэнда
-В папке docker/weather-app_instances/ запустите
+В папке docker/hackathon-messenger_instances/ запустите
 ```
 ./django_logs
 ```
 ## После запуска
 - Вы найдете приложение по адресу http://localhost:$BACKEND_PORT$,
-где BACKEND_PORT - значение переменной BACKEND_PORT в файле docker/weather-app_instances/.env
+где BACKEND_PORT - значение переменной BACKEND_PORT в файле docker/hackathon-messenger_instances/.env
 - Аналогично с FRONTEND
 ## Управление бэкэндом
 ### Консоль Django
