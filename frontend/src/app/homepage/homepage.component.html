@@ -1,0 +1,211 @@
+<div class="reglog-container">
+<!-- Кнопка-триггер окна регистрации -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right: 1vw;" *ngIf="cookieService.get('token') == ''">
+    Регистрация
+  </button>
+<!-- Кнопка-триггер окна входв -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" *ngIf="cookieService.get('token') == ''">
+    Вход
+  </button>
+  <button type="button" class="btn btn-primary" *ngIf="cookieService.get('token') != ''" (click)="logout()">
+    Выход
+  </button>
+</div>
+
+<!-- Модальное окно -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Регистрация</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="alert alert-success" role="alert" *ngIf="registrationConfirmation">
+            Вы успешно зарегистрировались! Можете входить
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.emailIncorrect">
+            Введите свой НАСТОЯЩИЙ email
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.alreadyPlacingEmail">
+            Данный email уже занят
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.retypePasswordIncorrect">
+            Пароли не совпадают, попробуйте ввести еще раз
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.emptyPassword">
+            Заполните поля паролей
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.emptyNickname">
+            Заполните поле никнейма
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Ваш никнейм</label>
+            <input type="input" class="form-control" id="exampleNicknameEmail1" aria-describedby="emailHelp" [(ngModel)]="registration.nickname" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Ваша почта</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="registration.email" [ngModelOptions]="{standalone: true}">
+            <div id="emailHelp" class="form-text">Мы никогда не будем делиться вашей электронной почтой с кем-либо еще.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Ваш пароль</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" [(ngModel)]="registration.password" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Повторите ваш пароль</label>
+            <input type="password" class="form-control" id="exampleRetypeInputPassword1" [(ngModel)]="registration.retypePassword" [ngModelOptions]="{standalone: true}">
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="userRegistration()">Зарегистрироваться</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Вход</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="alert alert-danger" role="alert" *ngIf="authErrorMessages.emptyNickname">
+            Введите никнейм
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="authErrorMessages.emptyPassword">
+            Введите пароль
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="authErrorMessages.incorrectAuth">
+            Некорректные данные
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Ваш никнейм</label>
+            <input type="input" class="form-control" id="exampleNicknameEmail2" aria-describedby="emailHelp" [(ngModel)]="authorization.nickname" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Ваш пароль</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" [(ngModel)]="authorization.password" [ngModelOptions]="{standalone: true}">
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="userAuthorization()">Войти</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Модальное окно -->
+<div *ngFor="let item of weatherData.results">
+  <div class="modal fade" [id]="'exampleModal'+item.id" tabindex="-1" [attr.aria-labelledby]="'exampleModal'+item.id" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Что надеть {{item.day}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="cookieService.get('token') == ''">{{get(clothes, item.general_recomendation)}}</div>
+        <div *ngIf="cookieService.get('token') != ''">
+          <p>Лучшие сочетания одежды из вашего гардероба:</p>
+          <p><b>Верх:</b></p>
+          <div *ngFor="let cloth of personalRecommendation[item.id].tops; let i = index">{{i+1}})
+            <div *ngFor="let oneOfPair of cloth" style="display: inline;">{{oneOfPair}}; </div>
+          </div>
+          <br>
+          <p><b>Низ:</b></p>
+          <div *ngFor="let cloth of personalRecommendation[item.id].bottoms; let i = index">{{i+1}})
+            <div *ngFor="let oneOfPair of cloth" style="display: inline;">{{oneOfPair}}; </div>
+          </div>
+          <br>
+          <p><b>Головные уборы:</b></p>
+          <div *ngFor="let cloth of personalRecommendation[item.id].heads; let i = index">{{i+1}})
+            <div *ngFor="let oneOfPair of cloth" style="display: inline;">{{oneOfPair}}; </div>
+          </div>
+          <br>
+          <p><b>Ноги:</b></p>
+          <div *ngFor="let cloth of personalRecommendation[item.id].foots; let i = index">{{i+1}})
+            <div *ngFor="let oneOfPair of cloth" style="display: inline;">{{oneOfPair}}; </div>
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<div class="mb-3" style="width: 400px; margin: 0 auto">
+  <input type="input" class="form-control" id="exampleInputCity" style="margin: auto; width: 400px" [(ngModel)]="cityName">
+  <button type="submit" class="btn btn-primary" style="position: relative; margin: auto; width: 400px" (click)="cityWeather()">Узнать погоду в этом городе</button>
+</div>
+  <div class="row">
+  <div class="col-sm" *ngIf="cookieService.get('token') != ''">
+    <div class="card card-col">
+      <div class="card-header">
+        Изменить гардероб
+      </div>
+      <div class="card-body">
+        <div class="alert alert-success" role="alert" *ngIf="clothConfirmation">
+          Одежда успешно создана
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example" style="margin-bottom: 3vh;">
+          <button type="button" class="btn btn-outline-secondary" (click)="addCloth()">Добавить</button>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputClothName" class="form-label">Название одежды</label>
+          <input type="input" class="form-control" id="exampleInputClothName" [(ngModel)]="createClothForm.name">
+        </div>
+        <div class="mb-3">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Выберите тип одежды
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" (click)="createClothForm.type=1">Куртка/кофта/свитер</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=2">Майка/Утепленная майка</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=3">Чулочно-носочные изделия</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=4">Перчаточные изделия</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=5">Головной убор</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=6">Штаны</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=7">Обувь</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="customRange3" class="form-label">Выберите минимально выносимую температуру в этой одежде при безветренной погоде: {{createClothForm.temperature_min}}</label>
+          <input type="range" class="form-range" min="-40" max="40" step="1" id="customRange3" [(ngModel)]="createClothForm.temperature_min">
+        </div>
+        <div class="mb-3">
+          <label for="customRange4" class="form-label">Выберите максимально выносимую температуру в этой одежде при безветренной погоде: {{createClothForm.temperature_max}}</label>
+          <input type="range" class="form-range" min="-40" max="40" step="1" id="customRange4" [(ngModel)]="createClothForm.temperature_max">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm">
+    <div class="card card-col">
+      <div class="card-header">
+        Погода {{weatherData.results[0].city}}
+      </div>
+      <div class="card-body" *ngFor="let item of weatherData.results">
+        <div class="container">
+          <div class="card">
+            <div class="card-header">{{item.day}}</div>
+            <div class="card-body">
+              <p> Средняя температура {{item.temperature}}°C</p>
+              <p>Влажность {{item.humidity}}%</p>
+              <p>Давление {{item.pressure}} мм. рт. ст</p>
+              <p>Скорость ветра {{item.wind_speed}} м/c</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id" style="margin-right: 1vw;" (click)="getPersonalRecomendation(item.id)">
+                Узнать, что стоит надевать
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.mask{
+    background: rgb(67,180,58);
+    background: linear-gradient(90deg, rgba(67,180,58,1) 0%, rgba(45,46,201,1) 50%, rgba(86,176,72,1) 88%);
+}
+.nav-link {
+  color: white;
+}

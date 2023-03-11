@@ -1,0 +1,52 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ../../
+      dockerfile: ./docker/hackathon-messenger_instances/dockerfiles/angular.Dockerfile
+    image: registry.gitlab.com/ignatinyutsin/insult-app/frontend
+    volumes:
+      - ../../frontend:/usr/src/app/
+      - /usr/src/app/node_modules
+    command: bash -c "ng serve --host 0.0.0.0 --port 4200"
+    ports:
+      - "$FRONTEND_PORT:4200"
+
+  db:
+    image: 
+      postgres:latest
+    restart: 
+      always
+    command: postgres -c listen_addresses='*'
+    environment:
+      POSTGRES_PASSWORD: $DB_PASS
+      POSTGRES_USER: $DB_USER
+      POSTGRES_DB: $DB_NAME
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - "$DB_PORT:5432"
+
+  backend:
+    build:
+        context: ../../
+        dockerfile: ./docker/hackathon-messenger_instances/dockerfiles/backend.Dockerfile
+    image: registry.gitlab.com/ignatinyutsin/insult-app/backend
+    command: bash -c "python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ../../backend/api/:/usr/src/app/
+    env_file:
+      - .env
+    environment:
+      REDIS: "redis:6379"
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "$BACKEND_PORT:8000"
+
+  redis:
+    image: redis:alpine
+
+volumes:
+  db:

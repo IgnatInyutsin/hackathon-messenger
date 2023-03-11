@@ -1,0 +1,9 @@
+.body-wrap{
+    position: relative;
+    margin: 0 auto;
+    width: 99%;
+    overflow: hidden;
+}
+.row {
+  width: 99%;
+}
