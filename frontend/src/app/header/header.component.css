@@ -5,3 +5,25 @@
 .nav-link {
   color: white;
 }
+.burger{
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  background: url("../../assets/burger-menu.png") no-repeat center;
+  background-size: contain;
+  margin: auto;
+
+}
+
+.close{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: url("../../assets/close.png") no-repeat center;
+  background-size: contain;
+
+}
+.avatar{
+  height: 30px;
+
+}

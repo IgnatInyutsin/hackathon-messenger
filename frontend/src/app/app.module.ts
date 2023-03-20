@@ -10,6 +10,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {Connector} from "./restapi";
+import { ChatMenuComponent } from './chat-menu/chat-menu.component';
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
     HomepageComponent,
     HeaderComponent,
     FooterComponent,
+    ChatMenuComponent,
   ],
   imports: [
     BrowserModule,
