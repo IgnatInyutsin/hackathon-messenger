@@ -14,4 +14,8 @@ export class HeaderComponent implements OnInit {
 
   }
   public showMenu= true;
+  name1:string="Egor";
+  avatar1:string = "user.png";
+  name2:string="Ingnar";
+  avatar2:string = "user.png";
 }
