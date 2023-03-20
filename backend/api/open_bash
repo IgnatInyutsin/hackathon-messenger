@@ -1,3 +1,3 @@
 #!/bin/bash
-cd ../../docker/weather-app_instances/
+cd ../../docker/hackathon-messenger_instances/
 docker-compose exec backend bash
