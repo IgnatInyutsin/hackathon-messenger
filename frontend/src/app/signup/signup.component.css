@@ -18,3 +18,11 @@ form{
     font-size: 5px ;
   }
 }
+.form-gray{
+  background-color: #1d1d1d;
+  border: none;
+
+}
+.form-gray::placeholder{
+  color: #aaaaaa;
+}
