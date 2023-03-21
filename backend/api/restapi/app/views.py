@@ -21,3 +21,9 @@ class UserSearchViewSet(mixins.ListModelMixin,
             queryset = queryset.filter(Q(name__icontains=self.request.query_params.get("username")) |
                                        Q(english_name__icontains=self.request.query_params.get("username")))
         return queryset
+
+class ChatViewSet(mixins.CreateModelMixin,
+                  viewsets.GenericViewSet):
+    queryset = Chat.objects.all()
+    serializer_class = ChatCreateSerializer
+    permission_classes = (permissions.IsAuthenticated,)
