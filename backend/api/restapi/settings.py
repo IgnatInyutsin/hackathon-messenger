@@ -12,6 +12,8 @@ DEBUG = bool(int(os.environ.get('DJANGO_DEBUG')))
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
+    'daphne',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -195,3 +197,5 @@ CACHES = {
 AUTHENTICATION_BACKENDS = (
     ('django.contrib.auth.backends.ModelBackend'),
 )
+
+ASGI_APPLICATION = "restapi.asgi.application"
