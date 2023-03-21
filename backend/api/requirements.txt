@@ -10,3 +10,5 @@ djangorestframework_simplejwt
 drf_yasg
 django-multiselectfield
 django-redis
+channels
+daphne
