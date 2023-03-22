@@ -41,7 +41,7 @@
         <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
       </a>
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-        <li><a class="dropdown-item" href="#">Новый проект...</a></li>
+        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
         <li><a class="dropdown-item" href="#">Настройка</a></li>
         <li><a class="dropdown-item" href="#">Профиль</a></li>
         <li><hr class="dropdown-divider"></li>
@@ -101,11 +101,39 @@
         <strong>mdo</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">Новый проект...</a></li>
+        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
         <li><a class="dropdown-item" href="#">Настройка</a></li>
         <li><a class="dropdown-item" href="#">Профиль</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#">Выйти</a></li>
       </ul>
+    </div>
+  </div>
+
+  <div class="modal fade" id="createNewChat" tabindex="-1" aria-labelledby="createNewChatLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background: #1d1d1d">
+        <div class="modal-header">
+          <h5 class="modal-title text-white" id="createNewChatLabel">Создание чата</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group mb-3 text-white">
+              <label for="inputChatName">Введите название чата</label>
+              <input type="text" class="form-control form-gray " id="inputChatName" placeholder="Chat Name">
+            </div>
+            <select class="form-control">
+              <option>Выберите пользователей</option>
+            </select>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" class="btn btn-primary">Создать чат</button>
+        </div>
+      </div>
     </div>
   </div>
