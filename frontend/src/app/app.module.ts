@@ -11,12 +11,22 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {Connector} from "./restapi";
 import { ChatMenuComponent } from './chat-menu/chat-menu.component';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
 
 // определение маршрутов
 const appRoutes: Routes = [
   {
     path: "",
     component: HomepageComponent // компонент главной страницы
+  },
+  {
+    path: "signup",
+    component: SignupComponent // компонент страницы регистрации
+  },
+  {
+    path: "login",
+    component: LoginComponent // компонент страницы входа в аккаунт
   },
 ];
 
@@ -28,6 +38,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     ChatMenuComponent,
+    SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

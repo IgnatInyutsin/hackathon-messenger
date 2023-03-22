@@ -1,0 +1,28 @@
+.signup_form{
+  width: 25%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form{
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .btn_apdaptive {
+    font-size: 10px ;
+  }
+}
+@media (max-width: 485px) {
+  .btn_apdaptive {
+    font-size: 5px ;
+  }
+}
+.form-gray{
+  background-color: #1d1d1d;
+  border: none;
+
+}
+.form-gray::placeholder{
+  color: #aaaaaa;
+}
