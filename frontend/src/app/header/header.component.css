@@ -30,3 +30,6 @@
   background-color: #ffc720;
   color: #000000;
 }
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #ffc720;
+}
