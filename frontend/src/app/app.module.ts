@@ -13,6 +13,7 @@ import {Connector} from "./restapi";
 import { ChatMenuComponent } from './chat-menu/chat-menu.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { MemberChoiceComponent } from './member-choice/member-choice.component';
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
     ChatMenuComponent,
     SignupComponent,
     LoginComponent,
+    MemberChoiceComponent,
   ],
   imports: [
     BrowserModule,

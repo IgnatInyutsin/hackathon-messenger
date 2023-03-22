@@ -6,12 +6,12 @@
     </a>
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
       <li class="nav-item">
-        <a href="#" class="nav-link active py-3" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+        <a href="#" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
           <img class = "avatar" src="../../assets/{{avatar1}}" alt="">
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link active py-3" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+        <a href="#" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
           <img class = "avatar" src="../../assets/{{avatar2}}" alt="">
         </a>
       </li>
@@ -56,7 +56,7 @@
 <!--      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
       <div class="close" (click)="showMenu = !showMenu" *ngIf="!showMenu"></div>
 
-      <span class="fs-4">Боковая панель</span>
+      <span class="fs-4 ms-3">Боковая панель</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto" >
@@ -125,14 +125,18 @@
               <label for="inputChatName">Введите название чата</label>
               <input type="text" class="form-control form-gray " id="inputChatName" placeholder="Chat Name">
             </div>
-            <select class="form-control">
-              <option>Выберите пользователей</option>
-            </select>
+            <div class="form-group mb-3 text-white">
+              <label for="inputUsername">Добавить пользователя</label>
+              <input type="text" class="form-control form-gray " id="inputUsername" placeholder="Search">
+            </div>
+            <app-member-choice [username]="name1"></app-member-choice>
+            <app-member-choice [username]="name2"></app-member-choice>
+
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-primary">Создать чат</button>
+          <button type="button" class="btn btn-warning">Создать чат</button>
         </div>
       </div>
     </div>
