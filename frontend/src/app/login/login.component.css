@@ -19,10 +19,14 @@ form{
   }
 }
 .form-gray{
-  background-color: #1d1d1d;
+  background-color: #303030;
   border: none;
 
 }
 .form-gray::placeholder{
   color: #aaaaaa;
+}
+.btn-active{
+  background-color: #284077;
+
 }

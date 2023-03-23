@@ -27,9 +27,22 @@
 
 }
 .active_danger{
-  background-color: #ffc720;
+  background-color: #284077;
   color: #000000;
 }
+.dropdown-item{
+  background-color: #4e4e4e;
+}
+.dropdown-menu{
+  background-color: #4e4e4e;
+}
 .dropdown-item.active, .dropdown-item:active {
-  background-color: #ffc720;
+  background-color: #3d4b88;
+}
+.bg-medium-dark{
+  background-color: #292c34;
+}
+.btn-active{
+  background-color: #284077;
+
 }
