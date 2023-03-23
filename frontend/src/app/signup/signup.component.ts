@@ -81,6 +81,8 @@ export class SignupComponent implements OnInit {
       this.signupForm.username = ""
       this.signupForm.email = ""
       this.signupForm.retypePassword = ""
+      this.signupForm.shortPassword = ""
+
     })
 
   }
