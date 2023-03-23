@@ -6,12 +6,12 @@
     </a>
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
       <li class="nav-item">
-        <a href="#" class="nav-link active py-3" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+        <a href="#" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
           <img class = "avatar" src="../../assets/{{avatar1}}" alt="">
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link active py-3" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+        <a href="#" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
           <img class = "avatar" src="../../assets/{{avatar2}}" alt="">
         </a>
       </li>
@@ -41,7 +41,7 @@
         <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
       </a>
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-        <li><a class="dropdown-item" href="#">Новый проект...</a></li>
+        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
         <li><a class="dropdown-item" href="#">Настройка</a></li>
         <li><a class="dropdown-item" href="#">Профиль</a></li>
         <li><hr class="dropdown-divider"></li>
@@ -56,7 +56,7 @@
 <!--      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
       <div class="close" (click)="showMenu = !showMenu" *ngIf="!showMenu"></div>
 
-      <span class="fs-4">Боковая панель</span>
+      <span class="fs-4 ms-3">Боковая панель</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto" >
@@ -101,11 +101,43 @@
         <strong>mdo</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">Новый проект...</a></li>
+        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
         <li><a class="dropdown-item" href="#">Настройка</a></li>
         <li><a class="dropdown-item" href="#">Профиль</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="#">Выйти</a></li>
       </ul>
+    </div>
+  </div>
+
+  <div class="modal fade" id="createNewChat" tabindex="-1" aria-labelledby="createNewChatLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background: #1d1d1d">
+        <div class="modal-header">
+          <h5 class="modal-title text-white" id="createNewChatLabel">Создание чата</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group mb-3 text-white">
+              <label for="inputChatName">Введите название чата</label>
+              <input type="text" class="form-control form-gray " id="inputChatName" placeholder="Chat Name">
+            </div>
+            <div class="form-group mb-3 text-white">
+              <label for="inputUsername">Добавить пользователя</label>
+              <input type="text" class="form-control form-gray " id="inputUsername" placeholder="Search">
+            </div>
+            <app-member-choice [username]="name1"></app-member-choice>
+            <app-member-choice [username]="name2"></app-member-choice>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" class="btn btn-warning">Создать чат</button>
+        </div>
+      </div>
     </div>
   </div>

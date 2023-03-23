@@ -2,3 +2,7 @@
   height: 30px;
 
 }
+.active_danger{
+  background-color: #ffc720;
+  color: #000000;
+}

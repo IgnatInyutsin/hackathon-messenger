@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   public showMenu= true;
   name1:string="Egor";
   avatar1:string = "user.png";
-  name2:string="Ingnar";
+  name2:string="Ingnat";
   avatar2:string = "user.png";
   regLogBlockable: boolean = false;
   constructor() { }
