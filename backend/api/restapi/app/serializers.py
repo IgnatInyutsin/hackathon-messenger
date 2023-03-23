@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from restapi.app.models import Chat
+from restapi.app.models import Chat, Message
 from django.shortcuts import get_object_or_404
 
 class UserSearchSerializer(serializers.ModelSerializer):
@@ -8,11 +8,14 @@ class UserSearchSerializer(serializers.ModelSerializer):
         model = User
         fields = ["id", "username"]
 
+
+
 class UserForChatCreateSetializer(serializers.ModelSerializer):
     id = serializers.IntegerField()
     class Meta:
         model = User
         fields = ["id"]
+
 class ChatCreateSerializer(serializers.ModelSerializer):
     members = UserForChatCreateSetializer(many=True)
     class Meta:
@@ -37,3 +40,36 @@ class ChatCreateSerializer(serializers.ModelSerializer):
         chat.save()
 
         return chat
+
+
+
+class UserForChatGetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "username"]
+
+class ChatGetSerializer(serializers.ModelSerializer):
+    members = UserForChatGetSerializer(many=True)
+    class Meta:
+        model = Chat
+        fields = ["id", "name", "type", "members"]
+
+
+
+class ForwardMessageSerializer(serializers.ModelSerializer):
+    author = UserForChatGetSerializer()
+    class Meta:
+        model = Message
+        fields = ["id", "text", "author"]
+class OneMessageSerializer(serializers.ModelSerializer):
+    author = UserForChatGetSerializer()
+    forward_message = ForwardMessageSerializer()
+    class Meta:
+        model = Message
+        fields = ["id", "text", "author", "forward_message"]
+class ChatRetrieveSerializer(serializers.ModelSerializer):
+    members = UserForChatGetSerializer(many=True)
+    messages = OneMessageSerializer(many=True)
+    class Meta:
+        model = Chat
+        fields = ["id", "name", "type", "members", "messages"]
