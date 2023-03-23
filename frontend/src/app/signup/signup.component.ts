@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
     emptyEmail: false,
     emptyPassword: false,
     differentPasswords: false,
+    shortPassword: false,
     incorrectData: false,
   }
 
@@ -35,6 +36,7 @@ export class SignupComponent implements OnInit {
     this.errors.emptyPassword = false;
     this.errors.differentPasswords = false;
     this.errors.emptyEmail = false;
+    this.errors.shortPassword = false;
     // Валидация
     if (this.signupForm.username == "") {
       this.errors.emptyNickname = true;
@@ -52,6 +54,10 @@ export class SignupComponent implements OnInit {
       this.errors.differentPasswords = true;
       return;
     }
+    if (this.signupForm.password.length < 8) {
+      this.errors.shortPassword = true;
+      return;
+    }
 
     this.http.post(this.connector.url + "api/auth/users/", this.signupForm).
     subscribe((data: any) => {
@@ -66,8 +72,6 @@ export class SignupComponent implements OnInit {
         // очищаем поля
         this.signupForm.password = ""
         this.signupForm.username = ""
-        this.signupForm.email = ""
-        this.signupForm.retypePassword = ""
       })
     }, (error) => {
       // иначе - сообщение об ошибке

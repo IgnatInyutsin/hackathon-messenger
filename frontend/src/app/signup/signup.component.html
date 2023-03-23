@@ -13,9 +13,13 @@
       <div class="alert alert-danger" role="alert" *ngIf="errors.differentPasswords">
         Пароли не совпадают
       </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errors.shortPassword">
+        Пароль короче 8 символов
+      </div>
       <div class="alert alert-danger" role="alert" *ngIf="errors.incorrectData">
         Неверные данные для входа
       </div>
+
       <div class="form-group">
         <label for="inputUsername">Имя</label>
         <input type="text" class="form-control form-gray text-white" id="inputUsername" placeholder="Nickname"
