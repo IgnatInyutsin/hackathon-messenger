@@ -31,5 +31,11 @@ export class AppComponent {
         location.reload();
       });
     }
+    if(window.location.pathname == "/login" && this.cookieService.get('token') != ""){
+      location.replace("/")
+    }
+    if(window.location.pathname == "/signup" && this.cookieService.get('token') != ""){
+      location.replace("/")
+    }
   }
 }
