@@ -18,7 +18,7 @@ export class AppComponent {
     if (this.cookieService.get("token") == '' && window.location.pathname != "/login" && window.location.pathname != "/signup") {
       location.replace("/login")
     }
-    else { //проверяем, действителен ли токен
+    else if (this.cookieService.get("token") != '') { //проверяем, действителен ли токен
       this.http.get(this.connector.url + "api/auth/users/me/", {
         headers: new HttpHeaders({
           "Authorization": "Token " + this.cookieService.get("token") // добавляем заголовок авторизации
