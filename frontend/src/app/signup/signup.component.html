@@ -38,7 +38,7 @@
                [(ngModel)]="signupForm.retypePassword" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group d-grid " style="margin-top: 20px; margin-bottom:20px">
-        <button type="button" class="btn btn-active btn_apdaptive text-white">Зарегистрироваться</button>
+        <button type="button" class="btn btn-active btn_apdaptive text-white" (click)="signup()">Зарегистрироваться</button>
       </div>
       <div class="form-group" >
         <p class="text-white" style="margin-bottom: 0px">Уже есть аккаунт?</p>

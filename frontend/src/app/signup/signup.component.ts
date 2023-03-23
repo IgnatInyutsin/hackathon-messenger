@@ -29,5 +29,56 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  signup(): void {
+    //очищение экрана от любых ошибок
+    this.errors.emptyNickname = false;
+    this.errors.emptyPassword = false;
+    this.errors.differentPasswords = false;
+    this.errors.emptyEmail = false;
+    // Валидация
+    if (this.signupForm.username == "") {
+      this.errors.emptyNickname = true;
+      return;
+    }
+    if (this.signupForm.email == "") {
+      this.errors.emptyEmail = true;
+      return;
+    }
+    if (this.signupForm.password == "") {
+      this.errors.emptyPassword = true;
+      return;
+    }
+    if (this.signupForm.retypePassword != this.signupForm.password) {
+      this.errors.differentPasswords = true;
+      return;
+    }
+
+    this.http.post(this.connector.url + "api/auth/users/", this.signupForm).
+    subscribe((data: any) => {
+      this.http.post(this.connector.url + "api/auth/token/login", this.signupForm).
+      subscribe((data: any) => {
+        // если получилось - добавляем в cookie токен сессии и перезагружаем страницу
+        this.cookieService.set("token", data.auth_token)
+        location.reload()
+      }, (error) => {
+        // иначе - сообщение об ошибке
+        this.errors.incorrectData = true;
+        // очищаем поля
+        this.signupForm.password = ""
+        this.signupForm.username = ""
+        this.signupForm.email = ""
+        this.signupForm.retypePassword = ""
+      })
+    }, (error) => {
+      // иначе - сообщение об ошибке
+      this.errors.incorrectData = true;
+      // очищаем поля
+      this.signupForm.password = ""
+      this.signupForm.username = ""
+      this.signupForm.email = ""
+      this.signupForm.retypePassword = ""
+    })
+
+  }
 
 }
