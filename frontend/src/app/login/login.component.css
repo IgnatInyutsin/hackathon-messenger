@@ -1,5 +1,6 @@
 .signup_form{
-  width: 25%;
+  width: 98%;
+  max-width: 1120px;
   margin: auto;
   display: flex;
   align-items: center;
