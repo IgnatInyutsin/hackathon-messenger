@@ -8,11 +8,14 @@ class UserSearchSerializer(serializers.ModelSerializer):
         model = User
         fields = ["id", "username"]
 
+
+
 class UserForChatCreateSetializer(serializers.ModelSerializer):
     id = serializers.IntegerField()
     class Meta:
         model = User
         fields = ["id"]
+
 class ChatCreateSerializer(serializers.ModelSerializer):
     members = UserForChatCreateSetializer(many=True)
     class Meta:
@@ -37,3 +40,16 @@ class ChatCreateSerializer(serializers.ModelSerializer):
         chat.save()
 
         return chat
+
+
+
+class UserForChatGetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "username"]
+
+class ChatGetSerializer(serializers.ModelSerializer):
+    members = UserForChatGetSerializer(many=True)
+    class Meta:
+        model = Chat
+        fields = ["id", "name", "type", "members"]
