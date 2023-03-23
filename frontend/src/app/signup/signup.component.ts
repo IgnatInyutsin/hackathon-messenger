@@ -19,6 +19,7 @@ export class SignupComponent implements OnInit {
   // сообщения об ошибках
   errors: any = {
     emptyNickname: false,
+    emptyEmail: false,
     emptyPassword: false,
     differentPasswords: false,
     incorrectData: false,
