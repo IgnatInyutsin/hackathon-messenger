@@ -23,7 +23,7 @@ class Message(models.Model):
                                         null=True,
                                         blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name="messages")
 
 class Prompt(models.Model):
     message = models.ForeignKey(Message, on_delete=models.CASCADE)

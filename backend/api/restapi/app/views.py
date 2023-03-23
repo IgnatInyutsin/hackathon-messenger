@@ -7,6 +7,7 @@ from django.db import transaction
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
+from restapi.app.permissions import ChatMemberPermission
 
 class UserSearchViewSet(mixins.ListModelMixin,
                    viewsets.GenericViewSet):
@@ -24,14 +25,17 @@ class UserSearchViewSet(mixins.ListModelMixin,
 
 class ChatViewSet(mixins.CreateModelMixin,
                   mixins.ListModelMixin,
+                  mixins.RetrieveModelMixin,
                   viewsets.GenericViewSet):
     queryset = Chat.objects.all()
     serializer_class = ChatCreateSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, ChatMemberPermission)
 
     def get_serializer_class(self): # Разные методы - разные сериализаторы
         if self.action == "list":
             return ChatGetSerializer
+        elif self.action == "retrieve":
+            return ChatRetrieveSerializer
         else:
             return ChatCreateSerializer
 
