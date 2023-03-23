@@ -1,20 +1,31 @@
 <div class="main">
   <div class="signup_form text-white">
     <form>
+      <div class="alert alert-danger" role="alert" *ngIf="errors.emptyNickname">
+        Введите никнейм
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errors.emptyPassword">
+        Введите пароль
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errors.incorrectData">
+        Неверные данные для входа
+      </div>
       <div class="form-group">
         <label for="inputUsername">Никнейм</label>
-        <input type="text" class="form-control form-gray text-white" id="inputUsername" placeholder="name@example.com">
+        <input type="text" class="form-control form-gray text-white" id="inputUsername" placeholder="name@example.com"
+               [(ngModel)]="loginForm.username" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group">
         <label for="inputPassword">Пароль</label>
-        <input type="password" class="form-control form-gray text-white" id="inputPassword" placeholder="password">
+        <input type="password" class="form-control form-gray text-white" id="inputPassword" placeholder="password"
+                [(ngModel)]="loginForm.password" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group d-grid " style="margin-top: 20px; margin-bottom: 20px;">
-        <button type="button" class="btn btn-active btn_apdaptive text-white">Войти</button>
+        <button type="button" class="btn btn-active btn_apdaptive text-white" (click)="login()">Войти</button>
       </div>
       <div class="form-group" >
         <p class="text-white" style="margin-bottom: 0px">Ещё нет аккаунта?</p>
-        <a href="../signup" type="button" class="btn btn-active btn_apdaptive text-white">Зарегистрироваться</a>
+        <a href="/signup" type="button" class="btn btn-active btn_apdaptive text-white">Зарегистрироваться</a>
       </div>
     </form>
   </div>
