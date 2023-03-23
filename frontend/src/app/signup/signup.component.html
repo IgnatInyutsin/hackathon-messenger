@@ -1,25 +1,38 @@
 <div class = "main">
   <div class="signup_form text-white">
     <form>
-      <div class="form-group">
-        <label for="inputLastName">Имя</label>
-        <input type="text" class="form-control form-gray text-white" id="inputFirstName" placeholder="First Name">
+      <div class="alert alert-danger" role="alert" *ngIf="errors.emptyNickname">
+        Введите никнейм
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errors.emptyPassword">
+        Введите пароль
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errors.differentPasswords">
+        Пароли не совпадают
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errors.incorrectData">
+        Неверные данные для входа
       </div>
       <div class="form-group">
-        <label for="inputLastName">Фамилия</label>
-        <input type="text" class="form-control form-gray text-white" id="inputLastName" placeholder="Last Name">
+        <label for="inputUsername">Имя</label>
+        <input type="text" class="form-control form-gray text-white" id="inputUsername" placeholder="Nickname"
+               [(ngModel)]="signupForm.username" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group">
         <label for="inputEmail">Email</label>
-        <input type="email" class="form-control form-gray text-white" id="inputEmail" placeholder="name@example.com">
+        <input type="email" class="form-control form-gray text-white" id="inputEmail" placeholder="name@example.com"
+               [(ngModel)]="signupForm.email" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group">
         <label for="inputPassword">Пароль</label>
-        <input type="password" class="form-control form-gray text-white" id="inputPassword" placeholder="password">
+        <input type="password" class="form-control form-gray text-white" id="inputPassword" placeholder="password"
+               [(ngModel)]="signupForm.password" [ngModelOptions]="{standalone: true}">
+        >
       </div>
       <div class="form-group " >
         <label for="inputRetypePassword">Введите пароль заново</label>
-        <input type="password" class="form-control form-gray text-white" id="inputRetypePassword" placeholder="retype password">
+        <input type="password" class="form-control form-gray text-white" id="inputRetypePassword" placeholder="retype password"
+               [(ngModel)]="signupForm.retypePassword" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group d-grid " style="margin-top: 20px; margin-bottom:20px">
         <button type="button" class="btn btn-active btn_apdaptive text-white">Зарегистрироваться</button>
