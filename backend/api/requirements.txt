@@ -12,3 +12,5 @@ django-multiselectfield
 django-redis
 channels
 daphne
+channels_redis
+asgiref
