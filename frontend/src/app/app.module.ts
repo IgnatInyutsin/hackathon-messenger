@@ -14,6 +14,7 @@ import { ChatMenuComponent } from './chat-menu/chat-menu.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { MemberChoiceComponent } from './member-choice/member-choice.component';
+import { ChatComponent } from './chat/chat.component';
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
     SignupComponent,
     LoginComponent,
     MemberChoiceComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
