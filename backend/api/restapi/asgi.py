@@ -4,6 +4,7 @@ from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 from django.core.asgi import get_asgi_application
+from restapi.app.middleware import TokenAuthMiddlewareStack
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 # Initialize Django ASGI application early to ensure the AppRegistry
@@ -16,7 +17,7 @@ application = ProtocolTypeRouter(
     {
         "http": django_asgi_app,
         "websocket": AllowedHostsOriginValidator(
-            AuthMiddlewareStack(URLRouter(restapi.routing.websocket_urlpatterns))
-        ),
+            TokenAuthMiddlewareStack(URLRouter(restapi.routing.websocket_urlpatterns))
+        )
     }
 )
