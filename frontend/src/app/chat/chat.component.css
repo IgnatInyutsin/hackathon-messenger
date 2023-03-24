@@ -1,0 +1,8 @@
+.form-gray{
+  background-color: #303030;
+  border: none;
+
+}
+.form-gray::placeholder{
+  color: #aaaaaa;
+}

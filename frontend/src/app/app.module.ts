@@ -30,6 +30,10 @@ const appRoutes: Routes = [
     path: "login",
     component: LoginComponent // компонент страницы входа в аккаунт
   },
+  {
+    path: "chat",
+    component: ChatComponent // компонент страницы чата
+  },
 ];
 
 
