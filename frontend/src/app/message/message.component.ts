@@ -15,5 +15,6 @@ export class MessageComponent implements OnInit {
   @Input() authorId: number = -1;
   @Input() authorName: string = "";
   @Input() textMessage: string = "";
+  @Input() isMine: boolean = false;
 
 }

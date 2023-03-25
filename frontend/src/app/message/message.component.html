@@ -1,10 +1,11 @@
-<div class="fixed-bottom text-white mt-5 mb-5 me-2 ms-auto" style="max-width: 20%; margin-right: 0; margin-left: auto;">
-  <div class="d-flex justify-content-between">
-    <p class="small mb-1">{{authorName}}</p>
-  </div>
-  <div class="d-flex flex-row justify-content-end mb-4 pt-1">
-    <div>
-      <p class="small p-2 me-3 mb-3 text-white rounded-3 bg-active">{{textMessage}}</p>
+  <div class="fixed-bottom text-white mt-5 mb-5" style="max-width: 20%;" [ngClass]="{'me-2 ms-auto': isMine, 'me-auto ms-2': !isMine}">
+    <div class="d-flex justify-content-between">
+      <p class="small mb-1">{{authorName}}</p>
+    </div>
+    <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+      <div>
+        <p class="small p-2 me-3 mb-3 text-white rounded-3" [ngClass]="{'bg-mine': isMine, 'bg-noMine': !isMine}">{{textMessage}}</p>
+      </div>
     </div>
   </div>
-</div>
+
