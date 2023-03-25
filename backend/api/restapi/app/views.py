@@ -6,7 +6,6 @@ from datetime import datetime
 from django.db import transaction
 from rest_framework.response import Response
 from rest_framework import status
-from django.db.models import Q
 from restapi.app.permissions import ChatMemberPermission
 
 class UserSearchViewSet(mixins.ListModelMixin,
@@ -17,10 +16,11 @@ class UserSearchViewSet(mixins.ListModelMixin,
 
     def get_queryset(self):
         queryset = self.queryset
+
         # фильтр по имени пользователя
         if "username" in self.request.query_params:
-            queryset = queryset.filter(Q(name__icontains=self.request.query_params.get("username")) |
-                                       Q(english_name__icontains=self.request.query_params.get("username")))
+            queryset = queryset.filter(username__icontains=self.request.query_params.get("username"))
+
         return queryset
 
 class ChatViewSet(mixins.CreateModelMixin,
