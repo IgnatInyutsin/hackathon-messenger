@@ -1,22 +1,26 @@
-<div class="position-fixed w-100 " style="flex-direction: column;display: flex;width: calc(20% - 4.5rem); left: 4.5rem;">
+<div class="position-fixed fixed-bottom" style="flex-direction: column;display: flex;width: calc(98% - 4.5rem); left: calc(4.5rem + 2%); overflow: auto; max-height: 100%; margin-bottom: 50px;">
   <app-message [authorName]="nameUser" [textMessage]="message" [isMine] = "true"></app-message>
+  <app-message [authorName]="nameUser" [textMessage]="message" [isMine] = "false"></app-message>
+  <app-message [authorName]="nameUser" [textMessage]="message" [isMine] = "false"></app-message>
+  <app-message [authorName]="nameUser" [textMessage]="message" [isMine] = "false"></app-message>
   <app-message [authorName]="nameUser" [textMessage]="message" [isMine] = "false"></app-message>
 </div>
 
-<form class="form-group text-white fixed-bottom m-2 position-fixed text-center row d-flex justify-content-between" style="width: calc(98% - 4.5rem); left: 4.5rem;">
+<form class="form-group text-white fixed-bottom position-fixed text-center row" style="display: flex; width: calc(98% - 4.5rem); left: calc(4.5rem + 30px); flex-direction: row; justify-content: center">
   <!-- Внутри этого тега все relative - тут и делаешь форму отправки -->
-  <input type="text" class="form-control form-gray text-white col-sm" id="inputMessage" placeholder="Input Message">
-  <div class="d-flex dropdown" style="flex: 0 0 48px;">
-    <button class="btn plus btn-active dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 48px; height: 48px;"></button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item text-white" href="#">Записать голосовое сообщение</a>
-      <a class="dropdown-item text-white" href="#">Отправить изображение</a>
-      <a class="dropdown-item text-white" href="#">Отправить файл</a>
+  <input type="text" class="form-control form-gray text-white" id="inputMessage" placeholder="Input Message" style="width: calc(85% - 96px)">
+  <div style="display: flex; flex-direction: row; flex: 0 0 96px" class="d-flex">
+    <div class="d-flex dropdown" style="flex: 0 0 48px; margin-right: 5px;">
+      <button class="btn plus btn-active dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 48px; height: 48px;"></button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item text-white" href="#">Записать голосовое сообщение</a>
+        <a class="dropdown-item text-white" href="#">Отправить изображение</a>
+        <a class="dropdown-item text-white" href="#">Отправить файл</a>
+      </div>
+    </div>
+    <div class="d-flex" style="flex: 0 0 48px;">
+      <button class="btn send" style="width: 48px; height: 48px;"></button>
     </div>
   </div>
-  <div class="d-flex" style="flex: 0 0 48px;">
-    <button class="btn send" style="width: 48px; height: 48px;"></button>
-  </div>
-
 </form>
 
