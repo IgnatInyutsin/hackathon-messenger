@@ -14,8 +14,12 @@ import { ChatMenuComponent } from './chat-menu/chat-menu.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { MemberChoiceComponent } from './member-choice/member-choice.component';
-
+import { ChatComponent } from './chat/chat.component';
+import { MessageComponent } from './message/message.component';
 // определение маршрутов
+let id;
+id = 1
+
 const appRoutes: Routes = [
   {
     path: "",
@@ -28,6 +32,10 @@ const appRoutes: Routes = [
   {
     path: "login",
     component: LoginComponent // компонент страницы входа в аккаунт
+  },
+  {
+    path: `chat/${id}`,
+    component: ChatComponent // компонент страницы чата
   },
 ];
 
@@ -42,6 +50,8 @@ const appRoutes: Routes = [
     SignupComponent,
     LoginComponent,
     MemberChoiceComponent,
+    ChatComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
