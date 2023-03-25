@@ -34,7 +34,7 @@ const appRoutes: Routes = [
     component: LoginComponent // компонент страницы входа в аккаунт
   },
   {
-    path: `chat/${id}`,
+    path: `chat/:id`,
     component: ChatComponent // компонент страницы чата
   },
 ];
