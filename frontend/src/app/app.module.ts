@@ -16,8 +16,10 @@ import { LoginComponent } from './login/login.component';
 import { MemberChoiceComponent } from './member-choice/member-choice.component';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
-
 // определение маршрутов
+let id;
+id = 1
+
 const appRoutes: Routes = [
   {
     path: "",
@@ -32,7 +34,7 @@ const appRoutes: Routes = [
     component: LoginComponent // компонент страницы входа в аккаунт
   },
   {
-    path: "chat",
+    path: `chat/${id}`,
     component: ChatComponent // компонент страницы чата
   },
 ];
