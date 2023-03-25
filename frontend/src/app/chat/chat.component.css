@@ -21,5 +21,19 @@
   }
 }
 .send{
-  background: url("../../assets/icons8-send-48.png");
+  background: #284077 url("../../assets/icons8-send-48.png") center center no-repeat ;
+  background-size: 24px;
+}
+.plus{
+  background: #284077 url("../../assets/icons8-add-new-48.png") center center no-repeat;
+  background-size: 24px;
+}
+.dropdown-item{
+  background-color: #4e4e4e;
+}
+.dropdown-menu{
+  background-color: #4e4e4e;
+}
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #3d4b88;
 }
