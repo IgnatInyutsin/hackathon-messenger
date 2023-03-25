@@ -15,6 +15,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { MemberChoiceComponent } from './member-choice/member-choice.component';
 import { ChatComponent } from './chat/chat.component';
+import { MessageComponent } from './message/message.component';
 
 // определение маршрутов
 const appRoutes: Routes = [
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
     LoginComponent,
     MemberChoiceComponent,
     ChatComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
