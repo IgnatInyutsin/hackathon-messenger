@@ -1,0 +1,39 @@
+.form-gray{
+  background-color: #303030;
+  border: none;
+
+}
+.form-gray::placeholder{
+  color: #aaaaaa;
+}
+.btn-active{
+  background-color: #284077;
+
+}
+@media (max-width: 767px) {
+  .btn_apdaptive {
+    font-size: 10px ;
+  }
+}
+@media (max-width: 485px) {
+  .btn_apdaptive {
+    font-size: 5px ;
+  }
+}
+.send{
+  background: #284077 url("../../assets/icons8-send-48.png") center center no-repeat ;
+  background-size: 24px;
+}
+.plus{
+  background: #284077 url("../../assets/icons8-add-new-48.png") center center no-repeat;
+  background-size: 24px;
+}
+.dropdown-item{
+  background-color: #4e4e4e;
+}
+.dropdown-menu{
+  background-color: #4e4e4e;
+}
+.dropdown-item.active, .dropdown-item:active {
+  background-color: #3d4b88;
+}
