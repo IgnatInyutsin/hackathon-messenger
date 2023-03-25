@@ -6,3 +6,20 @@
 .form-gray::placeholder{
   color: #aaaaaa;
 }
+.btn-active{
+  background-color: #284077;
+
+}
+@media (max-width: 767px) {
+  .btn_apdaptive {
+    font-size: 10px ;
+  }
+}
+@media (max-width: 485px) {
+  .btn_apdaptive {
+    font-size: 5px ;
+  }
+}
+.send{
+  background: url("../../assets/icons8-send-48.png");
+}
