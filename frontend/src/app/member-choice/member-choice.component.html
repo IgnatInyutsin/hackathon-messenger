@@ -1,7 +1,12 @@
-<div class="rounded fs-4 user" style="height: 4vh">
+<div class="rounded fs-4 user" style="height: 4vh" *ngIf="!activeButton">
   <div class="m-2 text-white">
     {{username}}
-    <button class="btn btn-active p-1 text-white">Добавить</button>
+    <button class="btn btn-active p-1 text-white" (click)="toggleActive()">Добавить</button>
   </div>
-
+</div>
+<div class="rounded fs-4 user" style="height: 4vh" *ngIf="activeButton">
+  <div class="m-2 text-white">
+    {{username}}
+    <button class="btn btn-danger p-1 text-white" (click)="toggleActive()">Отменить</button>
+  </div>
 </div>
