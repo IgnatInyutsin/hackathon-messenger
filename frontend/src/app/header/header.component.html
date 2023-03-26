@@ -1,5 +1,8 @@
-<div class="alert alert-danger" role="alert" *ngIf="errors.emptyNickname">
+<div class="alert alert-danger mb-2" role="alert" style="z-index: 9999;" *ngIf="errors.emptyNickname">
   Введите никнейм
+</div>
+<div class="alert alert-danger " role="alert" style="z-index: 9999;" *ngIf="errors.emptyChatName">
+  Введите имя чата
 </div>
   <div class="d-flex flex-column flex-shrink-0 bg-medium-dark " style="width: 4.5rem; height: 100%; position: fixed; left: 0px; top: 0px; z-index: 9999;"
        *ngIf="showMenu && !regLogBlockable">
@@ -126,7 +129,8 @@
           <form>
             <div class="form-group mb-3 text-white">
               <label for="inputChatName">Введите название чата</label>
-              <input type="text" class="form-control form-gray text-white" id="inputChatName" placeholder="Chat Name">
+              <input type="text" class="form-control form-gray text-white" id="inputChatName" placeholder="Chat Name"
+                     [(ngModel)]="userSearchForm.chatName" [ngModelOptions]="{standalone: true}">
             </div>
             <div class="form-group mb-3 text-white ">
               <label for="inputUsername">Добавить пользователя</label>
@@ -139,7 +143,7 @@
               </div>
             </div>
             <div *ngFor="let item of newData">
-              <app-member-choice [username]="item" [activeButton]="dataObj[item]" (activeButtonChange)="dataObj[item]=$event"></app-member-choice>
+              <app-member-choice [username]="item" [activeButton]="newDataObj[item][0]" (activeButtonChange)="newDataObj[item][0]=$event"></app-member-choice>
             </div>
 <!--            <app-member-choice [username]="name2"></app-member-choice>-->
 
@@ -147,7 +151,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-active text-white" >Создать чат</button>
+          <button type="button" class="btn btn-active text-white" (click)="createChat()">Создать чат</button>
         </div>
       </div>
     </div>
