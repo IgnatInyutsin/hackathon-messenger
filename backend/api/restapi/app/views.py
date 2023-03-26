@@ -21,8 +21,8 @@ class UserSearchViewSet(mixins.ListModelMixin,
         if "username" in self.request.query_params:
             queryset = queryset.filter(username__icontains=self.request.query_params.get("username"))
         # если пользователь зарегистрирован, то не показывай его
-        if request.user.is_authenticated:
-            queryset = queryset.exclude(id=request.user.id)
+        if self.request.user != None:
+            queryset = queryset.exclude(id=self.request.user.id)
 
         return queryset
 
