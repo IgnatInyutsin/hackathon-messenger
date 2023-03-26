@@ -1,19 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Connector} from "../restapi";
+import { CookieService } from 'ngx-cookie-service';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class ChatComponent implements AfterViewInit {
+  @ViewChild('chatblock', {static: false}) chatBlock:any;
+  chatData: any = {
+    messages: []
   }
-  nameUser:string="Egor";
-  message: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-  mine: boolean = true;
-  noMine: boolean = false;
+  myID: number;
 
+  constructor(private http: HttpClient, private connector: Connector, public cookieService: CookieService, private activateRoute: ActivatedRoute) { }
+
+  ngAfterViewInit(): void {
+    // скролл вниз чата
+    this.chatBlock.nativeElement.scrollTop = this.chatBlock.nativeElement.scrollHeight;
+    // узнаем историю сообщений
+    this.http.get(this.connector.url + "api/chats/" + this.activateRoute.snapshot.params['id'] + "/",
+      {headers: new HttpHeaders({"Authorization": "Token " + this.cookieService.get("token")})})
+      .subscribe((data) => {
+        this.chatData = data;
+        console.log(data)
+      });
+    // узнаем свой ID
+    this.http.get(this.connector.url + "api/auth/users/me/",
+      {headers: new HttpHeaders({"Authorization": "Token " + this.cookieService.get("token")})})
+      .subscribe((data: any) => {
+        this.myID = data.id;
+      })
+  }
 }

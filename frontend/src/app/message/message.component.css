@@ -4,3 +4,7 @@
 .bg-noMine{
   background-color: #4e4e4e;
 }
+.right-author {
+  text-align: right;
+  width:97%;
+}

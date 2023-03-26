@@ -22,7 +22,8 @@ export class HeaderComponent implements OnInit {
     if (window.location.pathname == "/login" || window.location.pathname == "/signup") this.regLogBlockable = true;
   }
   goOut(): void{
-    this.cookieService.delete('token');
+    console.log("QQ")
+    this.cookieService.delete('token', "/");
     location.reload()
   }
 }
