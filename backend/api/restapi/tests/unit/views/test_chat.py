@@ -11,9 +11,11 @@ class Request:
 class ChatViewSetTestCase(TestCase):
     def setUp(self):
         # Создаем чаты
-        self.chats = [Chat(name="test",type="pm"),
-                Chat(name="test2", type="pm"),
-                Chat(name="test3", type="gm")]
+        self.chats = [
+            Chat(name="test",type="pm"),
+            Chat(name="test2", type="pm"),
+            Chat(name="test3", type="gm")
+        ]
 
         # Создаем пользователя
         self.request = Request()

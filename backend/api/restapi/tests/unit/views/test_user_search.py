@@ -11,10 +11,12 @@ class Request:
 class UserSearchViewSetTestCase(TestCase):
     def setUp(self):
         # Создаем пользователей
-        users = [User(username="tol", password="test"),
-                 User(username="tolya", password="test"),
-                 User(username="TOLya", password="test"),
-                 User(username="toklya", password="test")]
+        users = [
+            User(username="tol", password="test"),
+            User(username="tolya", password="test"),
+            User(username="TOLya", password="test"),
+            User(username="toklya", password="test")
+        ]
 
         for user in users:
             user.save()

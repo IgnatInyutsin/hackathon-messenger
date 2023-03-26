@@ -29,7 +29,7 @@ class ChatViewSet(mixins.CreateModelMixin,
                   viewsets.GenericViewSet):
     queryset = Chat.objects.all()
     serializer_class = ChatCreateSerializer
-    permission_classes = (permissions.IsAuthenticated, ChatMemberPermission)
+    permission_classes = (permissions.IsAuthenticated,)
 
     def get_serializer_class(self): # Разные методы - разные сериализаторы
         if self.action == "list":
@@ -43,3 +43,11 @@ class ChatViewSet(mixins.CreateModelMixin,
         if self.action == "list":
             return Chat.objects.filter(members__in=[self.request.user])
         return self.queryset
+
+    def get_permissions(self):
+        if self.action in ("list", "create"):
+            self.permission_classes = (permissions.IsAuthenticated,)
+        elif self.action == "retrieve":
+            self.permission_classes = (permissions.IsAuthenticated, ChatMemberPermission)
+
+        return super(self.__class__, self).get_permissions()
