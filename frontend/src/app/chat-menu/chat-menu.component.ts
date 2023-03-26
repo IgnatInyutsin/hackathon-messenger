@@ -13,7 +13,5 @@ export class ChatMenuComponent implements OnInit {
   }
   @Input() chatName: string = "";
   // @Input() lastChatMessage: string = "";
-  @Input() chatAvatar: String = "";
-
   @Input() chatID: number = -1;
 }
