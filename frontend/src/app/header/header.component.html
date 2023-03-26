@@ -139,7 +139,7 @@
               </div>
             </div>
             <div *ngFor="let item of newData">
-              <app-member-choice [username]="item" ></app-member-choice>
+              <app-member-choice [username]="item" [activeButton]="dataObj[item]" (activeButtonChange)="dataObj[item]=$event"></app-member-choice>
             </div>
 <!--            <app-member-choice [username]="name2"></app-member-choice>-->
 

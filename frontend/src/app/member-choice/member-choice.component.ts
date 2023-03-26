@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-member-choice',
@@ -12,5 +12,12 @@ export class MemberChoiceComponent implements OnInit {
   ngOnInit(): void {
   }
   @Input() username: string = "";
+  @Input() activeButton: boolean = false;
+  @Output() activeButtonChange = new EventEmitter<boolean>();
+
+  toggleActive() {
+    this.activeButton = !this.activeButton;
+    this.activeButtonChange.emit(this.activeButton);
+  }
 
 }

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Connector} from "../restapi";
 import {CookieService} from "ngx-cookie-service";
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -23,7 +24,9 @@ export class HeaderComponent implements OnInit {
   avatar2:string = "user.png";
   regLogBlockable: boolean = false;
   newData: Array<string> =[];
+  dataButtons: Array<boolean> = [];
   test:boolean = false;
+  dataObj: { [key: string]: boolean } = {};
 
   constructor(private http: HttpClient, private connector: Connector, public cookieService: CookieService) { }
 
@@ -33,6 +36,12 @@ export class HeaderComponent implements OnInit {
     subscribe((data: any) => {
       // здесь уже все перебираем
       this.newData = data.results.map((num: any) => num.username);
+      for (let i = 0; i<this.newData.length;i++){
+        this.dataButtons.push(false);
+      };
+      for (const key of this.newData) {
+        this.dataObj[key] = false;
+      }
     }, (error) => {
       // очищаем поля
       this.userSearchForm.username = ""
@@ -55,6 +64,9 @@ export class HeaderComponent implements OnInit {
     subscribe((data: any) => {
       // здесь уже все перебираем
       this.newData = data.results.map((num: any) => num.username);
+      for (const key of this.newData) {
+        this.dataObj[key] = false;
+      }
     }, (error) => {
       // очищаем поля
       this.userSearchForm.username = ""
