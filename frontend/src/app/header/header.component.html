@@ -12,16 +12,14 @@
 <!--      <span class="visually-hidden">Только иконка</span>-->
     </a>
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" style="overflow: auto; display: inline-block;">
-      <li class="nav-item">
-        <a href="#" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
-          <img class = "avatar" src="../../assets/{{avatar1}}" alt="">
-        </a>
-      </li>
+      <div *ngFor="let item of chat | keyvalue">
       <li class="nav-item">
         <a href="#" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
           <img class = "avatar" src="../../assets/{{avatar2}}" alt="">
         </a>
       </li>
+      </div>
+
 <!--      <li>-->
 <!--        <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Панель">-->
 <!--          <svg class="bi" width="24" height="24" role="img" aria-label="Панель"><use xlink:href="#speedometer2"></use></svg>-->
@@ -48,7 +46,6 @@
         <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
       </a>
       <ul class="dropdown-menu text-small shadow " aria-labelledby="dropdownUser3">
-        <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewGroup">Новая группа</button></li>
         <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
 
         <li><a class="dropdown-item text-white" href="#">Настройка</a></li>
@@ -69,9 +66,8 @@
     </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto" style="overflow: auto; display: inline-block;" >
-      <div>
-        <app-chat-menu [chatName]="name1" [chatAvatar]="avatar1" [chatID]="1"></app-chat-menu>
-        <app-chat-menu [chatName]="name2" [chatAvatar]="avatar2" [chatID]="2"></app-chat-menu>
+      <div *ngFor="let item of chat | keyvalue">
+        <app-chat-menu [chatName]="item.key" [chatID]="item.value"></app-chat-menu>
       </div>
       <!--      <li class="nav-item">-->
 <!--        <a href="#" class="nav-link active" aria-current="page">-->
@@ -111,7 +107,6 @@
         <strong>mdo</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow text-white" aria-labelledby="dropdownUser1">
-        <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewGroup">Новая группа</button></li>
         <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
 
         <li><a class="dropdown-item text-white" href="#">Настройка</a></li>
@@ -158,7 +153,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-active text-white" (click)="getMyChats()">Создать чат</button>
+          <button type="button" class="btn btn-active text-white" (click)="createChat()">Создать чат</button>
         </div>
       </div>
     </div>

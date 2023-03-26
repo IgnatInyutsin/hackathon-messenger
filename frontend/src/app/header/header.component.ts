@@ -58,6 +58,7 @@ export class HeaderComponent implements OnInit {
       this.userSearchForm.username = ""
     })
     this.getMineID()
+    this.getMyChats()
   }
   goOut(): void{
     this.cookieService.delete('token');
