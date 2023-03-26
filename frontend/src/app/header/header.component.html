@@ -145,6 +145,7 @@
             <div *ngFor="let item of newData">
               <app-member-choice [username]="item" [activeButton]="newDataObj[item][0]" (activeButtonChange)="newDataObj[item][0]=$event"></app-member-choice>
             </div>
+
 <!--            <app-member-choice [username]="name2"></app-member-choice>-->
 
           </form>

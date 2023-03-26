@@ -34,7 +34,11 @@ export class HeaderComponent implements OnInit {
   trueIds: Array<number> = [];
   trueIdsObjArr: Array<object> = [];
 
+  myId: number = -1;
+
+
   constructor(private http: HttpClient, private connector: Connector, public cookieService: CookieService) { }
+
 
   ngOnInit(): void {
     if (window.location.pathname == "/login" || window.location.pathname == "/signup") this.regLogBlockable = true;
@@ -53,6 +57,7 @@ export class HeaderComponent implements OnInit {
       // очищаем поля
       this.userSearchForm.username = ""
     })
+    this.getMineID()
   }
   goOut(): void{
     this.cookieService.delete('token');
@@ -95,11 +100,12 @@ export class HeaderComponent implements OnInit {
         this.trueIds.push(value[1])
       }
     }
+    this.getMineID();
     this.trueIdsObjArr = this.trueIds.map(id => ({ id }));
+    this.trueIdsObjArr.push({"id": this.myId});
     this.http.post(this.connector.url + "api/chats/", {name:this.userSearchForm.chatName, type:"gm", members: this.trueIdsObjArr}, {headers: new HttpHeaders({"Authorization": "Token " + this.cookieService.get("token")})}).
     subscribe((data: any) => {
-      console.log(data)
-
+      return(data.name)
     }, (error) => {
       // иначе - сообщение об ошибке
       this.userSearchForm.username = "";
@@ -109,11 +115,9 @@ export class HeaderComponent implements OnInit {
   getMineID():void{
   this.http.get(this.connector.url + "api/auth/users/me/", {headers:new HttpHeaders({"Authorization": "Token " + this.cookieService.get("token")})}).
   subscribe((data: any) => {
-  return data;
-}, (error) => {
+    this.myId= data.id;
+    }, (error) => {
   // иначе - сообщение об ошибке
-
 })
   }
-
 }
