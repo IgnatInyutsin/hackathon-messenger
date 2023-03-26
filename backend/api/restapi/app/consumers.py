@@ -66,6 +66,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         text_data_json["author_name"] = self.user.username
         text_data_json["author_id"] = self.user.id
+        text_data_json["chat_id"] = self.chat.id
+        text_data_json["chat_name"] = self.chat.name
 
         # сохраняем в базу данных
         message_obj = Message(
