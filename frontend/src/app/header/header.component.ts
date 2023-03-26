@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
   trueIdsObjArr: Array<object> = [];
 
   myId: number = -1;
-
+  chat: {[chatname: string]: number} = {};
 
   constructor(private http: HttpClient, private connector: Connector, public cookieService: CookieService) { }
 
@@ -119,5 +119,17 @@ export class HeaderComponent implements OnInit {
     }, (error) => {
   // иначе - сообщение об ошибке
 })
+  }
+  getMyChats(): void{
+    this.http.get(this.connector.url + "api/chats/", {headers:new HttpHeaders({"Authorization": "Token " + this.cookieService.get("token")})}).
+    subscribe((data: any) => {
+      for (const chat of data.results) {
+        this.chat[chat.name] = chat.id;
+      }
+      console.log(this.chat)
+
+    }, (error) => {
+      // иначе - сообщение об ошибке
+    })
   }
 }

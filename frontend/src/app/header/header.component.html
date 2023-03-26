@@ -4,6 +4,7 @@
 <div class="alert alert-danger " role="alert" style="z-index: 9999;" *ngIf="errors.emptyChatName">
   Введите имя чата
 </div>
+
   <div class="d-flex flex-column flex-shrink-0 bg-medium-dark " style="width: 4.5rem; height: 100%; position: fixed; left: 0px; top: 0px; z-index: 9999;"
        *ngIf="showMenu && !regLogBlockable">
     <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Только иконка">
@@ -47,7 +48,9 @@
         <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
       </a>
       <ul class="dropdown-menu text-small shadow " aria-labelledby="dropdownUser3">
+        <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewGroup">Новая группа</button></li>
         <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
+
         <li><a class="dropdown-item text-white" href="#">Настройка</a></li>
         <li><a class="dropdown-item text-white" href="#">Профиль</a></li>
         <li><hr class="dropdown-divider"></li>
@@ -66,9 +69,10 @@
     </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto" style="overflow: auto; display: inline-block;" >
-      <app-chat-menu [chatName]="name1" [chatAvatar]="avatar1" [chatID]="1"></app-chat-menu>
-      <app-chat-menu [chatName]="name2" [chatAvatar]="avatar2" [chatID]="2"></app-chat-menu>
-
+      <div>
+        <app-chat-menu [chatName]="name1" [chatAvatar]="avatar1" [chatID]="1"></app-chat-menu>
+        <app-chat-menu [chatName]="name2" [chatAvatar]="avatar2" [chatID]="2"></app-chat-menu>
+      </div>
       <!--      <li class="nav-item">-->
 <!--        <a href="#" class="nav-link active" aria-current="page">-->
 <!--          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>-->
@@ -107,7 +111,9 @@
         <strong>mdo</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow text-white" aria-labelledby="dropdownUser1">
+        <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewGroup">Новая группа</button></li>
         <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
+
         <li><a class="dropdown-item text-white" href="#">Настройка</a></li>
         <li><a class="dropdown-item text-white" href="#">Профиль</a></li>
         <li><hr class="dropdown-divider"></li>
@@ -152,7 +158,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-active text-white" (click)="createChat()">Создать чат</button>
+          <button type="button" class="btn btn-active text-white" (click)="getMyChats()">Создать чат</button>
         </div>
       </div>
     </div>
