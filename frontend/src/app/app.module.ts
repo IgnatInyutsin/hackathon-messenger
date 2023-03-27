@@ -18,7 +18,7 @@ import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
 // определение маршрутов
 let id;
-id = 1
+id = 2
 
 const appRoutes: Routes = [
   {
