@@ -1,3 +1,10 @@
+<div class="alert alert-danger mb-2" role="alert" style="z-index: 9999;" *ngIf="errors.emptyNickname">
+  Введите никнейм
+</div>
+<div class="alert alert-danger " role="alert" style="z-index: 9999;" *ngIf="errors.emptyChatName">
+  Введите имя чата
+</div>
+
   <div class="d-flex flex-column flex-shrink-0 bg-medium-dark " style="width: 4.5rem; height: 100%; position: fixed; left: 0px; top: 0px; z-index: 9999;"
        *ngIf="showMenu && !regLogBlockable">
     <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Только иконка">
@@ -5,16 +12,10 @@
 <!--      <span class="visually-hidden">Только иконка</span>-->
     </a>
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" style="overflow: auto; display: inline-block;">
-      <li class="nav-item">
-        <a href="#" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
-          <img class = "avatar" src="../../assets/{{avatar1}}" alt="">
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
-          <img class = "avatar" src="../../assets/{{avatar2}}" alt="">
-        </a>
-      </li>
+      <div *ngFor="let item of chat | keyvalue">
+        <app-mini-chat-menu [chatID]="item.value"></app-mini-chat-menu>
+      </div>
+
 <!--      <li>-->
 <!--        <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Панель">-->
 <!--          <svg class="bi" width="24" height="24" role="img" aria-label="Панель"><use xlink:href="#speedometer2"></use></svg>-->
@@ -42,10 +43,11 @@
       </a>
       <ul class="dropdown-menu text-small shadow " aria-labelledby="dropdownUser3">
         <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
+
         <li><a class="dropdown-item text-white" href="#">Настройка</a></li>
         <li><a class="dropdown-item text-white" href="#">Профиль</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><button (click)="goOut()" class="dropdown-item text-white" >Выйти</button></li>
+        <li><button (click)="goOut()" class=  "dropdown-item text-white" >Выйти</button></li>
       </ul>
     </div>
   </div>
@@ -60,9 +62,9 @@
     </div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto" style="overflow: auto; display: inline-block;" >
-      <app-chat-menu [chatName]="name1" [chatAvatar]="avatar1" [chatID]="1"></app-chat-menu>
-      <app-chat-menu [chatName]="name2" [chatAvatar]="avatar2" [chatID]="2"></app-chat-menu>
-
+      <div *ngFor="let item of chat | keyvalue">
+        <app-chat-menu [chatName]="item.key" [chatID]="item.value"></app-chat-menu>
+      </div>
       <!--      <li class="nav-item">-->
 <!--        <a href="#" class="nav-link active" aria-current="page">-->
 <!--          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>-->
@@ -102,6 +104,7 @@
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow text-white" aria-labelledby="dropdownUser1">
         <li><button class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#createNewChat">Новый чат</button></li>
+
         <li><a class="dropdown-item text-white" href="#">Настройка</a></li>
         <li><a class="dropdown-item text-white" href="#">Профиль</a></li>
         <li><hr class="dropdown-divider"></li>
@@ -123,20 +126,30 @@
           <form>
             <div class="form-group mb-3 text-white">
               <label for="inputChatName">Введите название чата</label>
-              <input type="text" class="form-control form-gray " id="inputChatName" placeholder="Chat Name">
+              <input type="text" class="form-control form-gray text-white" id="inputChatName" placeholder="Chat Name"
+                     [(ngModel)]="userSearchForm.chatName" [ngModelOptions]="{standalone: true}">
             </div>
-            <div class="form-group mb-3 text-white">
+            <div class="form-group mb-3 text-white ">
               <label for="inputUsername">Добавить пользователя</label>
-              <input type="text" class="form-control form-gray " id="inputUsername" placeholder="Search">
+              <div class="position-relative">
+              <input type="text" class="form-control form-gray text-white" id="inputUsername" placeholder="Search"
+                     [(ngModel)]="userSearchForm.username" [ngModelOptions]="{standalone: true}">
+              <button class="btn" style="position: absolute; top: 0; right: 0; z-index: 1;" (click)="userSearch()">
+               <img src="../../assets/icons8-search-50.png" style="width: 24px;height: 24px" alt="">
+              </button>
+              </div>
             </div>
-            <app-member-choice [username]="name1"></app-member-choice>
-            <app-member-choice [username]="name2"></app-member-choice>
+            <div *ngFor="let item of newData">
+              <app-member-choice [username]="item" [activeButton]="newDataObj[item][0]" (activeButtonChange)="newDataObj[item][0]=$event"></app-member-choice>
+            </div>
+
+<!--            <app-member-choice [username]="name2"></app-member-choice>-->
 
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-active text-white">Создать чат</button>
+          <button type="button" class="btn btn-active text-white" (click)="createChat()">Создать чат</button>
         </div>
       </div>
     </div>

@@ -16,9 +16,10 @@ import { LoginComponent } from './login/login.component';
 import { MemberChoiceComponent } from './member-choice/member-choice.component';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
+import { MiniChatMenuComponent } from './mini-chat-menu/mini-chat-menu.component';
 // определение маршрутов
 let id;
-id = 1
+id = 2
 
 const appRoutes: Routes = [
   {
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     MemberChoiceComponent,
     ChatComponent,
     MessageComponent,
+    MiniChatMenuComponent,
   ],
   imports: [
     BrowserModule,

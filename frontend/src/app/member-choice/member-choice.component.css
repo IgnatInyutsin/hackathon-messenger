@@ -1,4 +1,9 @@
 .btn-active{
   background-color: #284077;
+  border: none;
+}
+.user{
+  background-color: #303030;
+  border: none;
 
 }

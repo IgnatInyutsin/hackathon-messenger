@@ -46,3 +46,16 @@
   background-color: #284077;
 
 }
+.form-gray{
+  background-color: #303030;
+  border: none;
+
+}
+.form-gray::placeholder{
+  color: #aaaaaa;
+}
+.form-gray.active, .form-gray:active{
+  background-color: #303030;
+  border: none;
+
+}

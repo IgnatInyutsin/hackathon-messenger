@@ -1,11 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-chat-menu',
-  templateUrl: './chat-menu.component.html',
-  styleUrls: ['./chat-menu.component.css']
+  selector: 'app-mini-chat-menu',
+  templateUrl: './mini-chat-menu.component.html',
+  styleUrls: ['./mini-chat-menu.component.css']
 })
-export class ChatMenuComponent implements OnInit {
+export class MiniChatMenuComponent implements OnInit {
+
 
   activeChat: boolean = false
 
@@ -16,7 +17,6 @@ export class ChatMenuComponent implements OnInit {
       this.activeChat = true;
     }
   }
-  @Input() chatName: string = "";
-  // @Input() lastChatMessage: string = "";
   @Input() chatID: number = -1;
+
 }

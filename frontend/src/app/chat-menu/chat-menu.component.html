@@ -1,6 +1,5 @@
-<li class="big-chat-id">
-<a href="#" class="nav-link active_danger text-white" aria-current="page" >
-  <img  class="avatar" src="../../assets/{{chatAvatar}}" alt="">
+<li class="big-chat-id" >
+<a href="../chat/{{chatID}}" class="nav-link text-white" [ngClass]="{'active_danger': activeChat, 'noactive_danger': !activeChat}" aria-current="page" >
   {{ chatName }}
 </a>
 </li>
