@@ -6,3 +6,7 @@
   background-color: #284077;
   color: #ffffff;
 }
+.noactive_danger{
+  background-color: #303030;
+  border: none;
+}
