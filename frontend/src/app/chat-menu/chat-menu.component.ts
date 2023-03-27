@@ -7,9 +7,14 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ChatMenuComponent implements OnInit {
 
+  activeChat: boolean = false
+
   constructor() { }
 
   ngOnInit(): void {
+    if (window.location.pathname == `/chat/${this.chatID}`){
+      this.activeChat = true;
+    }
   }
   @Input() chatName: string = "";
   // @Input() lastChatMessage: string = "";

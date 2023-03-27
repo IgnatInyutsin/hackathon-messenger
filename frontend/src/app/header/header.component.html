@@ -13,11 +13,7 @@
     </a>
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" style="overflow: auto; display: inline-block;">
       <div *ngFor="let item of chat | keyvalue">
-      <li class="nav-item">
-        <a href="../chat/{{item.value}}" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
-          <img class = "avatar" src="../../assets/{{avatar2}}" alt="">
-        </a>
-      </li>
+        <app-mini-chat-menu [chatID]="item.value"></app-mini-chat-menu>
       </div>
 
 <!--      <li>-->
@@ -51,7 +47,7 @@
         <li><a class="dropdown-item text-white" href="#">Настройка</a></li>
         <li><a class="dropdown-item text-white" href="#">Профиль</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><button (click)="goOut()" class="dropdown-item text-white" >Выйти</button></li>
+        <li><button (click)="goOut()" class=  "dropdown-item text-white" >Выйти</button></li>
       </ul>
     </div>
   </div>
