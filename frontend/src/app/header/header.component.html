@@ -14,7 +14,7 @@
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" style="overflow: auto; display: inline-block;">
       <div *ngFor="let item of chat | keyvalue">
       <li class="nav-item">
-        <a href="#" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+        <a href="../chat/{{item.value}}" class="nav-link py-3 active_danger" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
           <img class = "avatar" src="../../assets/{{avatar2}}" alt="">
         </a>
       </li>
