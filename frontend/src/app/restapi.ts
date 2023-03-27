@@ -1,3 +1,3 @@
 export class Connector {
-  url: string = "http://weather.perpetum-mobile.ru/"
+  url: string = "http://localhost:98/"
 }
