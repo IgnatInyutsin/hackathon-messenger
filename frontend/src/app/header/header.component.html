@@ -1,11 +1,17 @@
-<div class="alert alert-danger mb-2" role="alert" style="z-index: 9999;" *ngIf="errors.emptyNickname">
-  Введите никнейм
-</div>
-<div class="alert alert-danger " role="alert" style="z-index: 9999;" *ngIf="errors.emptyChatName">
-  Введите имя чата
+<div class="toast-container position-fixed p-3 top-0 end-0" id="toastPlacement" style="z-index: 9999;">
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" style="z-index: 9999;">
+    <div class="toast-header">
+      <strong class="me-auto">{{notificationUserName}} [{{notificationChatName}}]</strong>
+      <small class="text-muted">только что</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      {{notificationMessage}}
+    </div>
+  </div>
 </div>
 
-  <div class="d-flex flex-column flex-shrink-0 bg-medium-dark " style="width: 4.5rem; height: 100%; position: fixed; left: 0px; top: 0px; z-index: 9999;"
+<div class="d-flex flex-column flex-shrink-0 bg-medium-dark " style="width: 4.5rem; height: 100%; position: fixed; left: 0px; top: 0px; z-index: 9;"
        *ngIf="showMenu && !regLogBlockable">
     <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Только иконка">
       <div class="burger" style="" (click)="showMenu= !showMenu" *ngIf="showMenu"></div>
@@ -51,7 +57,7 @@
       </ul>
     </div>
   </div>
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-medium-dark " style="width: 280px; height: 100%; position: fixed; left: 0px; top: 0px; z-index: 9999;"
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-medium-dark " style="width: 280px; height: 100%; position: fixed; left: 0px; top: 0px; z-index: 9;"
        *ngIf="!showMenu && !regLogBlockable">
 
     <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">

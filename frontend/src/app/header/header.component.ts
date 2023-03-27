@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Connector} from "../restapi";
 import {CookieService} from "ngx-cookie-service";
-
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-header',
@@ -36,6 +36,11 @@ export class HeaderComponent implements OnInit {
 
   myId: number = -1;
   chat: {[chatname: string]: number} = {};
+  websockets: any = {};
+
+  notificationUserName: any = ""
+  notificationChatName: any = ""
+  notificationMessage: any = ""
 
   constructor(private http: HttpClient, private connector: Connector, public cookieService: CookieService) { }
 
@@ -107,12 +112,13 @@ export class HeaderComponent implements OnInit {
     this.trueIdsObjArr.push({"id": this.myId});
     this.http.post(this.connector.url + "api/chats/", {name:this.userSearchForm.chatName, type:"gm", members: this.trueIdsObjArr}, {headers: new HttpHeaders({"Authorization": "Token " + this.cookieService.get("token")})}).
     subscribe((data: any) => {
-      return(data.name)
+      console.log(data);
     }, (error) => {
       // иначе - сообщение об ошибке
       this.userSearchForm.username = "";
       this.userSearchForm.chatName = ""
     })
+
   }
   getMineID():void{
   this.http.get(this.connector.url + "api/auth/users/me/", {headers:new HttpHeaders({"Authorization": "Token " + this.cookieService.get("token")})}).
@@ -125,13 +131,27 @@ export class HeaderComponent implements OnInit {
   getMyChats(): void{
     this.http.get(this.connector.url + "api/chats/", {headers:new HttpHeaders({"Authorization": "Token " + this.cookieService.get("token")})}).
     subscribe((data: any) => {
-      for (const chat of data.results) {
+
+      for (const chat of data) {
         this.chat[chat.name] = chat.id;
+        this.websockets[chat.name] = new WebSocket(this.connector.wsUrl + "ws/chat/" + chat.id + "/?token=" + this.cookieService.get("token"))
+        this.websockets[chat.name].onmessage = (event:any) => {this.createNotification(event.data)}
       }
       console.log(this.chat)
 
     }, (error) => {
       // иначе - сообщение об ошибке
     })
+  }
+
+  createNotification(data: any): void {
+    data = JSON.parse(data)
+    this.notificationChatName = data["chat_name"]
+    this.notificationUserName = data["author_name"]
+    this.notificationMessage = data["text"]
+
+    let myAlert = document.querySelector('.toast');
+    let bsAlert = new bootstrap.Toast(myAlert);
+    bsAlert.show();
   }
 }

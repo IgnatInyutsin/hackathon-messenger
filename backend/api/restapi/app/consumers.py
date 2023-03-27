@@ -74,9 +74,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
             text=text_data_json["text"],
             forward_message=forward_message,
             author=self.user,
-            chat = self.chat
+            chat=self.chat
         )
-        sync_to_async(message_obj.save)()
+        await sync_to_async(message_obj.save)()
 
         # отправляем сообщение всем
         await self.channel_layer.group_send(

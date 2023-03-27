@@ -35,4 +35,5 @@ export class ChatComponent implements AfterViewInit {
         this.myID = data.id;
       })
   }
+
 }
