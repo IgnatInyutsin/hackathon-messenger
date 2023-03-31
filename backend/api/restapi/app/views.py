@@ -33,6 +33,7 @@ class ChatViewSet(mixins.CreateModelMixin,
     queryset = Chat.objects.all()
     serializer_class = ChatCreateSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    pagination_class = None
 
     def get_serializer_class(self): # Разные методы - разные сериализаторы
         if self.action == "list":
