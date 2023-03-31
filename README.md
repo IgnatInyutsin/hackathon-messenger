@@ -72,3 +72,5 @@ exit
 ```
 ./makemigrations
 ```
+## Настройка
+В файле frontend/src/app/restapi.ts измените значения на хост бэкэнда для веб сокета и для REST API. В случае, если вы запускаете локально, замените 98 в строках на порт BACKEND_PORT в docker/hackathon-messenger_instances/.env
